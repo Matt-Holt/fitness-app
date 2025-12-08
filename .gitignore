@@ -36,6 +36,9 @@ google-services.json
 node modules/
 node_modules/
 
+# Android
+android
+
 # Cache
 .angular/
 .vscode/
