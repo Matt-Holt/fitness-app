@@ -10,4 +10,16 @@
       <ion-title size="large">Workouts</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-list>
+    <ion-reorder-group [disabled]="false">
+      <ion-item *ngFor="let workout of workoutList;">
+        <ion-reorder slot="start"></ion-reorder>
+        <ion-label> {{ workout.name }} </ion-label>
+        <ion-label> {{ workout.weightPB }} </ion-label>
+        <ion-label> {{ workout.repPB }} </ion-label>
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
+
+  <ion-button (click)="testMethod()">Test</ion-button>
 </ion-content>
