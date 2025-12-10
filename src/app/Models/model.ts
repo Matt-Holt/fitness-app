@@ -1,12 +1,12 @@
 export interface workout {
-    id: number;
+    id?: number;
     name: string;
     weightPB: number;
     repPB: number;
 }
 
 export interface session {
-    id: number;
+    id?: number;
     workoutId: number;
     weightKG: number;
     reps: number;

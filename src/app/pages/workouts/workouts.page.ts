@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonReorder, IonReorderGroup, IonItem, IonLabel, IonList } from '@ionic/angular/standalone';
 import { databaseService } from 'src/app/services/databaseService/databaseService';
 import { workout } from 'src/app/Models/model';
-import { IonButton, IonicModule } from '@ionic/angular';
+import { IonButton, IonicModule, IonInput } from '@ionic/angular';
+import { AlertService } from 'src/app/services/alertService/alert-service';
 
 @Component({
   selector: 'app-workouts',
@@ -16,22 +17,37 @@ import { IonButton, IonicModule } from '@ionic/angular';
 export class WorkoutsPage implements OnInit {
 
   workoutList: workout[] = [];
+  newWorkout: workout = { name: '', weightPB: 0, repPB: 0 };
+  selectedWorkoutId = '';
 
-  constructor(private databaseService: databaseService) {
+  constructor(private databaseService: databaseService, private alertService: AlertService) {
     this.init();
   }
 
   async init() {
-    this.databaseService.dbReady$.subscribe(async result => {
+    this.databaseService.workouts$.subscribe(async result => {
       if (result) {
-        this.workoutList = await this.databaseService.getAllWorkouts();
+        this.workoutList = result;
       }
     });
   }
 
-  async testMethod() {
-    const result = await this.databaseService.getAllWorkouts();
-    console.log(result);
+  async addWorkout() {
+    await this.databaseService.addWorkout(this.newWorkout);
+  }
+
+  async selectWorkout(id: number | undefined) {
+    const idStr = '' + id;
+    if (this.selectedWorkoutId == idStr) {
+      this.selectedWorkoutId = '';
+    }
+    else {
+      this.selectedWorkoutId = '' + id;
+    }
+  }
+
+  isSelectedWorkout(id: number | undefined) {
+    return ('' + id) == this.selectedWorkoutId;
   }
 
   ngOnInit() { }

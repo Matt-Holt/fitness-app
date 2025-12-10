@@ -16,5 +16,5 @@ export const routes: Routes = [
   {
     path: 'timer',
     loadComponent: () => import('./pages/timer/timer.page').then( m => m.TimerPage)
-  },
+  }
 ];

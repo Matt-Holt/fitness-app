@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { barbellOutline, timerOutline } from 'ionicons/icons'
+import { barbellOutline, timerOutline, addCircleOutline, caretForwardOutline, caretDownOutline } from 'ionicons/icons'
 
 addIcons({
 'barbell-outline': barbellOutline,
-'timer-outline': timerOutline
+'timer-outline': timerOutline,
+'add-circle-outline': addCircleOutline,
+'caret-forward-outline': caretForwardOutline,
+'caret-down-outline': caretDownOutline
 });
 
 @Component({
